@@ -5,3 +5,6 @@ var mysql = require('mysql');
 // and to the database "chat".
 
 
+// mysql -u root -p
+
+// USE the chat database
