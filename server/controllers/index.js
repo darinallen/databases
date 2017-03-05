@@ -26,10 +26,28 @@ module.exports = {
   users: {
     // Ditto as above
     get: function (req, res) {
-      console.log('Sending a users GET request in controller');
+      models.users.get(function(error, result) {
+        res.json(result);
+      });
     },
     post: function (req, res) {
       console.log('Sending a users POST request in controller');
+      console.log('req.body: ', req.body);
+      var params = [ req.body['username'] ];
+      console.log('params: ', params);
+      models.users.post(params, function(error, result) {
+        console.log('result: ', result);
+        res.json(result);
+      });
     }
   }
 };
+
+// post: function () {
+//   console.log('Sending a users POST request in controller');
+//   var params = [req.body[username]];
+//   models.users.post(params, function(err, results) {
+//     // TODO: handle err
+//     res.json(results);
+//   });
+// }

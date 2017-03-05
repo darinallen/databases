@@ -42,11 +42,20 @@ module.exports = {
 
   users: {
     // Ditto as above.
-    get: function () {
+    get: function (callback) {
       console.log('Sending a users GET request in models');
+
+      db.connection.query('SELECT * FROM users', function(error, result) {
+        console.log('model log: ', result);
+        callback(error, result);
+      });
     },
-    post: function () {
+    post: function (params, callback) {
       console.log('Sending a users POST request in models');
+
+      db.connection.query('INSERT INTO users(username) values (?)', params, function(error, result) {
+        callback(error, result);
+      });
     }
   }
 };
